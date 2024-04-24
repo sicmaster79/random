@@ -55,7 +55,7 @@ function generarListaAleatoria() {
             elementoActual = generarElementoAleatorio();
             for (let i = 0; i < elementoActual.length; i++) {
                 const element = elementoActual[i];
-                html += "<tr><td>" + (i + 1) + "</td><td>" + element + "</td></tr>";
+                html += "<tr><td style='width:50px;color:red'>" + (i + 1) + "</td><td>" + element + "</td></tr>";
             }
             resultadosContenedorTabla.innerHTML = `${html}`;
         }, 100);
