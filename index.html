@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -29,15 +29,21 @@
             <div class="col-md-5">
                 <div class="container-tight">
                     <div class="card p-4" style="min-height: 400px;">
-                        <textarea id="listTextArea" class="form-control" rows="10" placeholder="Ingrese sus registros aquí..."></textarea>
+                        <textarea id="Titulo" class="form-control" rows="3" placeholder="Ingrese el Titulo"></textarea>
+
+                        <textarea id="listTextArea" class="form-control mt-2" rows="10" placeholder="Ingrese sus registros aquí..."></textarea>
                         <input type="number" id="cantidadSalidas" class="form-control mt-2 " placeholder="Cantidad de salidas">
                         <button id="generateButton" class="btn btn-primary mt-3 w-100">&#9654; Iniciar</button>
                     </div>
                 </div>
             </div>
-            <div class="col-md-7 d-lg-block">
+            <div class="col-md-7">
                 <div class="card" style="min-height: 400px;">
+                    <div id="cardTitulo" class="card-header">
+
+                    </div>
                     <div class="card-body">
+
                         <div id="output" class="animate__animated">
                             <div class="card">
                                 <table class="table card-table" id="output-table">
