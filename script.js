@@ -1,3 +1,5 @@
+const titulo = document.getElementById("Titulo");
+const cardTitulo = document.getElementById("cardTitulo");
 const listaTextArea = document.getElementById("listTextArea");
 const cantidadInput = document.getElementById("cantidadSalidas");
 const botonGenerar = document.getElementById("generateButton");
@@ -7,6 +9,8 @@ botonGenerar.addEventListener("click", generarListaAleatoria);
 
 function generarListaAleatoria() {
     if (!generateButton.disabled) {
+        cardTitulo.innerHTML = titulo.value.replace(/\n/g, "<br>");;
+
         generateButton.disabled = true;
         resultadosContenedor.classList.remove("animate__pulse");
         const listaTexto = listaTextArea.value.trim();
@@ -55,7 +59,7 @@ function generarListaAleatoria() {
             elementoActual = generarElementoAleatorio();
             for (let i = 0; i < elementoActual.length; i++) {
                 const element = elementoActual[i];
-                html += "<tr><td style='width:50px;color:red'>" + (i + 1) + "</td><td>" + element + "</td></tr>";
+                html += "<tr><td>" + (i + 1) + "</td><td>" + element + "</td></tr>";
             }
             resultadosContenedorTabla.innerHTML = `${html}`;
         }, 100);
