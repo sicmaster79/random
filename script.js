@@ -1,11 +1,40 @@
 const titulo = document.getElementById("Titulo");
 const cardTitulo = document.getElementById("cardTitulo");
-const listaTextArea = document.getElementById("listTextArea");
 const cantidadInput = document.getElementById("cantidadSalidas");
 const botonGenerar = document.getElementById("generateButton");
 const resultadosContenedor = document.getElementById("output");
 const resultadosContenedorTabla = document.getElementById("output-table");
 botonGenerar.addEventListener("click", generarListaAleatoria);
+
+// Inicializa el editor de CodeMirror
+var editor = CodeMirror.fromTextArea(document.getElementById("listTextArea"), {
+    lineNumbers: true,
+});
+
+// Función para capturar el contenido y mostrarlo en la tabla
+function mostrarEnTabla(contenido) {
+    var lineas = contenido.split('\n');  // Divide el contenido en líneas
+
+    console.log(lineas)
+
+    var tbody = document.querySelector('#table tbody');
+    tbody.innerHTML = '';  // Limpia la tabla antes de mostrar nuevos datos
+
+    // Itera sobre cada línea y la agrega a la tabla
+    lineas.forEach((linea, index) => {
+        var fila = document.createElement('tr');
+        var celdaNumero = document.createElement('td');
+        var celdaContenido = document.createElement('td');
+
+        celdaNumero.textContent = index + 1;  // Número de línea (empezando en 1)
+        celdaContenido.textContent = linea;  // Contenido de la línea
+
+        fila.appendChild(celdaNumero);
+        fila.appendChild(celdaContenido);
+        tbody.appendChild(fila);
+    });
+}
+
 
 function generarListaAleatoria() {
     if (!generateButton.disabled) {
@@ -13,7 +42,10 @@ function generarListaAleatoria() {
 
         generateButton.disabled = true;
         resultadosContenedor.classList.remove("animate__pulse");
-        const listaTexto = listaTextArea.value.trim();
+
+        const listaTextArea = editor.getValue();     // Captura el contenido del editor
+
+        const listaTexto = listaTextArea.trim();
         const elementosLista = listaTexto.split("\n");
         if (!elementosLista.length) {
             alert("Ingrese al menos un elemento en la lista");
@@ -29,6 +61,8 @@ function generarListaAleatoria() {
             return;
         }
         resultadosContenedorTabla.innerHTML = "";
+
+        mostrarEnTabla(listaTextArea)
 
         function generarElementoAleatorio() {
             const elementosGenerados = [];
@@ -59,7 +93,7 @@ function generarListaAleatoria() {
             elementoActual = generarElementoAleatorio();
             for (let i = 0; i < elementoActual.length; i++) {
                 const element = elementoActual[i];
-                html += "<tr><td>" + (i + 1) + "</td><td>" + element + "</td></tr>";
+                html += "<tr><td style='width:20px'>" + (i + 1) + ".</td><td>" + element + "</td></tr>";
             }
             resultadosContenedorTabla.innerHTML = `${html}`;
         }, 100);
